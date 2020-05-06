@@ -78,6 +78,20 @@ def connexion()
 			statut=False
 return (connect)
 
+def choix_cmd (cmd):
+    switcher = {
+        'mkd': creer,
+        'rnfr': renommer,
+        'dele': supprimerFichier,
+        'rmd': supprimerDossier,
+        'list': lister,
+        'stor': envoyer,
+        'pwd': localisation,
+        'cwd': se_deplacer,
+        'quit': deconnexion
+    }
+    return switcher.get(cmd, lambda: "no valid command")
+
 
 def main()
 
@@ -91,8 +105,10 @@ def main()
 	cmd=cmd.lower()
 	arg1=cmdsplit[1]
 	arg2=cmdsplit[2]
-
-
+	
+	
+	func = choix_cmd(cmd)
+	func(arg1, arg2);
 
 
 
